@@ -24,3 +24,11 @@ const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
     applyMiddleware(...middleware)
   ));
 https://github.com/zalmoxisus/redux-devtools-extension
+
+
+react-redux 是綁定器 / https://react-redux.js.org/
+Provider  / 蟲洞，可穿透整個文件
+connect() / 該connect()函數將React組件連接到Redux存儲
+  -> function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)
+    -> mapStateToProps?: Function / getter
+    -> mapDispatchToProps?: Function | Object / setter 

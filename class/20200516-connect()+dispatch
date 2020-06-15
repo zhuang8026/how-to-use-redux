@@ -1,0 +1,54 @@
+https://react-redux.js.org/api/connect
+
+connect() 高階元件
+
+function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)
+
+connect() 參量
+connect接受四個不同的參數，均為可選參數。按照慣例，它們被稱為：
+
+mapStateToProps?: Function
+mapDispatchToProps?: Function | Object
+mergeProps?: Function
+options?: Object
+
+---------------------------------------------------
+app.js 
+// store 來自index
+const mapStateToProps =(store)=>{
+    return {total: store.counter}
+}
+
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+---------------------------------------------------
+index.js 
+// 第一步 匯入createStore
+import { createStore, combineReducers } from 'redux'
+
+// 第二步 @reducer
+// action = { type: 'ADD_VALUE', value: 2 }
+function counter(state = 999, action) {
+  switch (action.type) {
+    case 'ADD_VALUE':
+      return state + action.value
+    case 'MINUS_VALUE':
+      return state - action.value
+    default:
+      return state
+  }
+}
+
+// 第二之一：合併所有的reducers成一個大的reducer
+// 傳入值為物件，用物件的es6的簡寫法
+const rootReducer = combineReducers({
+  counter,
+})
+
+// 第三步 由rootReducer建立store
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+)

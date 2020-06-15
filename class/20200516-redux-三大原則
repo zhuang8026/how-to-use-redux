@@ -1,0 +1,21 @@
+dispatcher 是發送器
+store  儲存空間
+action 是動作
+
+redux 的三大原則
+1. 單一真相來源
+    -> 你的整個應用中的state（狀態），會儲存在單一個 store（儲存）之中的一個物件樹狀結構中。
+2. 狀態是唯讀的
+    -> 唯一能更動狀態的是發送一個action （動作），action 是一個描述‘發生了什麼事情’的純物件
+        -> store.dispatch({
+            type: 'ADD',
+            text: 'william'
+        }) 
+        -> 
+3. 更動只能由純函式來進行
+    -> 要指示狀態數要如何依 action（動作）來作改變，你需要選寫純粹的歸納函式（reducers）
+        -> ( 前一個狀, 動作 ) => 新狀態
+        -> ( previousState, action ) => newState
+
+4. 純函數的物件
+    -> https://github.com/eyesofkids/201/blob/master/data/0615/redux_ch1_zhTW.key.pdf

@@ -1,0 +1,56 @@
+(1) 從redux模組中匯入createStore函式
+(2) 撰寫⼀個reducer(歸納)函式
+(3) 由寫好的reducer，建立出store
+(4) 撰寫⼀個render(渲染)函式，在狀態有更動時作
+重新呈現
+(5) 第⼀次調⽤render函式，作初始呈現
+(6) 訂閱render函式到store中
+(7) 觸發事件時要呼叫store.dispatch(action)⽅法
+
+index 留給-> redux
+
+app.js 留給-> router 
+
+---------------------------------- 
+store的原型
+type Store = {	
+    dispatch: Dispatch	
+    getState:()	=> State	
+    subscribe:(listener:() => void)=>	() => void
+    replaceReducer:	(reducer: Reducer) => void
+}	
+store的⽅法
+◆ dispatch ⽤於發送action(動作)使⽤的⽅法
+◆ getState 取得⽬前state的⽅法
+◆ subscribe 註冊⼀個回調函式，當state有更動時會
+呼叫它
+◆ replaceReducer ⾼級API，⽤於動態加載其它的 reducer，⼀般情況不會⽤
+
+注: 之後使⽤於React專⽤綁定套件後，subscribe⽅法不需使⽤
+
+dispatch⽅法
+dispatch: (action: A) => A
+◆ 唯⼀可以觸發更動state的⽅法
+◆ 傳入與返回類型都是⼀個action(動作)物件
+◆ 傳參通常是⼀個 Action Creator 的呼叫，這種樣式
+稱作"函式合成"
+◆ dispatch發送動作，store中的 reducer 將會同步傳
+入⽬前的狀態以及給定的 action ，開始計算新的狀
+態最後返回。回傳後更動的監聽⽬標將會被通知(⽤
+subscribe註冊的回調)，再調⽤ `getState()` 可得到
+新的狀態
+
+getState⽅法 
+getState():	S
+回傳⽬前state樹資料，相當於reducer最後返回出來的值
+
+Reducer(歸納函式)
+Reducer<S,	A>	= (state: S, action: A) => S
+reducer要求的是純函數⽽且無副作⽤
+
+狀態模型⽰例-1
+const todos = [	
+    {id:	1,	text:	'买台⻋'},	
+    {id:	2,	text:	'学习Redux'	},	
+    ...	
+]
