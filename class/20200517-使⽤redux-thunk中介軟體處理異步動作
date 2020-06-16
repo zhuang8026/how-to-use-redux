@@ -1,0 +1,36 @@
+https://github.com/reduxjs/redux-thunk
+
+redux-thunk中介軟體是什麼
+◆ 由redux官⽅設計的⼀種中介軟體，⽤於處理異步程
+序(副作⽤)
+◆ redux-thunk需要搭配Action Creator(動作建立器)
+使⽤，此時Action Creator會是⼀個返回另⼀個函
+式的函式，這個返回的函式才是真正在動作發⽣時
+作派送使⽤的Action Creator
+◆ redux-thunk只是⼀個運⽤了thunks樣式，⽤來協
+助調⽤這種轉換函數的中介軟體，程式碼⾏數非常
+少
+
+thunks樣式(同步求值計算)
+const	add	=	(x,	y)	=>	x	+	y	
+const	thunk	=	()	=>	add(1,	2)	
+//	立即求值
+add(1,	2)	
+//	延後求值
+thunk()
+
+thunks樣式(異步求值計算)
+//	異步延後求值
+const addAsync = (x,	y,	callback) => {	
+    setTimeout(	
+        ()	=>	callback(x	+	y),	3000	
+    )	
+}	
+//	包裝原本的異步函式，給定要得到3+5的值
+const	thunkAsync	=	(callback)	=>	{	
+		addAsync(3,	5,	callback)	
+}	
+//	真實運⾏，然後打印
+thunkAsync(	
+	 (sum) => { console.log(sum) }	
+)

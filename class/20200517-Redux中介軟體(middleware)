@@ -1,0 +1,28 @@
+Redux中介軟體(middleware)是什麼
+
+◆ 中介軟體(Middleware)提供了第三⽅擴展的位置，
+    它介於發送⼀個動作，到真正到達reducer之間。開
+    發者們使⽤Redux中介軟體，可⽤於⽇誌記錄、崩
+    潰報告或是異步API溝通、路由等等
+◆ 中介軟體的運⾏需要與動作建立器搭配使⽤
+◆ 中介軟體使⽤了JS語⾔中⾼階函式(HOF)的樣式
+◆ 多個中介軟體可以組合成⼀個⼤的中介軟體，使⽤
+    的是合成(compose)樣式
+
+//	⾼階函式，傳入⼀个函式，回传另⼀个函式
+function hof1(dispatch) {	
+    return function	newDispatch(action)	{	
+//	在dispatch前，作某些操作
+    console.log('发送动作 -	前')	
+    let	result = dispatch(action)	
+//	在dispatch後，作某些操作
+    console.log('发送动作 -	后')	
+    return	result	
+    }	
+}
+
+//	使⽤ 箭頭函数 再簡化
+const hof1 = (dispatch) => (action)	=> {	
+    let	result = dispatch(action)	
+    return	result	
+}

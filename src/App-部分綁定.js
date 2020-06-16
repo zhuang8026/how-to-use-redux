@@ -2,17 +2,14 @@ import React , {Component, useState}from 'react';
 
 import { connect } from 'react-redux'; // 高階元件
 
-import { addValue, subValue , addValueAsync } from "./actions/";
+// 部分綁定
+import { addValue, subValue } from './actions'; 
 
-// // 萬用字符 / 全部綁定
-// import * as actionCreators from './actions/';
-
-import { bindActionCreators } from 'redux';
+const actionCreators = { addValue, subValue }
 
 const Counter = (props) => {
-    // const [total, setTotal] = useState(0);
     console.log(props);
-    console.log(bindActionCreators)
+    console.log(actionCreators)
 
     const { total, dispatch } = props;
     return (
@@ -20,14 +17,8 @@ const Counter = (props) => {
         <h1>{total}</h1>
         <button
             onClick={() => {
-                props.addValueAsync( { value: 1 } )
-            }}
-        >
-            +1 異步
-        </button>
-
-        <button
-            onClick={() => {
+                // 改變redux的參數
+                // dispatch 是 setter 設定資料
                 props.addValue( { value: 1 } )
             }}
         >
@@ -36,7 +27,6 @@ const Counter = (props) => {
         <button
             onClick={() => {
                 props.subValue( { value: 1 } )
-
             }}
         >
             -1
@@ -48,14 +38,10 @@ const Counter = (props) => {
 // store 來自index 
 // mapStateToProps 是 gettter 得到資料
 const mapStateToProps =(store)=>{
-    console.log('store', store) // store 來自 reducers（store） 的 state 
     return { total: store.counter } 
 }
 
-const mapDispatchToProps = null;
-
 // connect 是高階元件 / 擁有 dispatch 
-// connect 是容器元件
-export default connect(mapStateToProps, { addValue, subValue, addValueAsync})(Counter); // 4-1 / 部分綁定
+export default connect(mapStateToProps, actionCreators)(Counter); // 4-1 / 部分綁定
 
 

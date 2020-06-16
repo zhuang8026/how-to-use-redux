@@ -1,0 +1,14 @@
+
+    -> index.js
+    -> view 頁面 (app.js / 本身含有 dispatch 方法) 
+        -> dispatch ( 取得或設定 ) 到 action 的 function
+            -> reducers ( 改變state值 ) 
+            -> reducers 是存在與 store 中 
+                -> (payload 是“有效資料“)
+                    -> state
+                        -> app.js 
+                        ->  const mapStateToProps =(store)=>{
+                                console.log('store', store) // store 來自 reducers（store） 的 state 
+                                return { total: store.counter } 
+                            }
+                            -> rednder 在頁面上 的 total

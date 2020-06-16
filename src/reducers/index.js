@@ -1,5 +1,5 @@
 // 組合使用
-// 第一步 匯入createStore
+// 第一步 匯入 createStore
 import { combineReducers } from 'redux';
 import counter from './counter';
 import todos1 from './todos1';
