@@ -1,0 +1,12 @@
+1. https://chentsulin.github.io/redux/
+    -> npm install --save redux
+    
+2.  https://react-redux.js.org/introduction/quick-start
+    -> npm install react-redux
+        -> import { Provider } from 'react-redux'
+        -> import { connect } from 'react-redux'
+
+3.  https://github.com/reduxjs/redux-thunk
+    -> npm install redux-thunk 中介軟體(middleware)
+
+4. 

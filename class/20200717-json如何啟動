@@ -1,0 +1,2 @@
+json-server --watch --port 5555 counter.json
+這個指令代表要啟動一個在埠號為5555的json-server伺服器，之後就可以用瀏覽器打開"http://localhost:5555/counter"

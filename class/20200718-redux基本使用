@@ -1,0 +1,73 @@
+0. 流程
+    -> state -> action -> reducer -> new state
+    -> store -> getState -> connect -> props -> component 
+1. redux 简介
+    -> Redux 是react全家桶的一员，它试图为 React 应用提供「可预测化的状态管理」机制
+    -> Redux 是将整个应用状态存储到到一个地方，称为store
+    -> 里面保存一棵状态树(state tree)
+    -> 组件可以 派送(dispatch) 行为(action) 给 store ,而 不是 直接通知 其它组件
+    -> 其它组件可以通过订阅 store 中的状态(state)来 刷新 自己的视图
+    -> 
+1-1. 安装
+    -> npm install --save redux
+1-2. Redux 核心
+    A. -> State (狀態)
+            -> state是数据集合 (工厂加工商品所需的 原材料 )
+    B. -> action (行為)
+            -> State 的变化，会导致 client View 的变化 
+            -> 用户接触不到 State，只能接触到 View，所以 State 的变化必须是 client View 导致的
+            -> action 就是改变state的指令，有多少 操作state的动作 就会有多少action (可以将 action 理解为描述发生了什么的 指示器 )
+    C. -> reducer 加工函数 (還原劑)
+            -> action 发出命令后将 state 放入 reducer 加工函数中，返回新的 state 。 (可以理解为加工的机器)
+    D. -> store (儲存)
+            -> (store 可以理解为有多个加工机器的总工厂)
+            -> let store = createStore(reducers);
+            -> Store 就是把它们联系到一起的对象
+                -> 维持应用的 state；
+                -> 提供 getState() 方法获取 state；
+                -> 提供 dispatch(action) 方法更新 state；
+                -> 通过 subscribe(listener) 注册监听器;
+                -> 通过 subscribe(listener) 返回的函数注销监听器。
+
+    *** 我们可以通过store.getState()来了解工厂中商品的状态， 使用store.dispatch发送action指令。*** 
+    
+
+2. react-redux
+        -> Redux 官方提供的 React 绑定库。 具有高效且灵活的特性。
+    2-1. 安装
+        -> npm install --save react-redux
+    2-2. 核心
+        -> < Provider store>
+        -> connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])
+        -> Provider 内的任何一个组件, 如果需要使用 state 中的数据，就必须是「被 connect 过的」, 这个函数允许我们将 store 中的数据作为 props 绑定到组件上
+
+
+3. redux-thunk
+    redux-thunk中介軟體是什麼
+    ->  由redux官⽅設計的⼀種中介軟體，⽤於處理異步程序(副作⽤)
+    ->  redux-thunk需要搭配Action Creator(動作建立器)使⽤，此時Action Creator會是⼀個返回另⼀個函式的函式，
+        這個返回的函式才是真正在動作發⽣時作派送使⽤的Action Creator
+    ->  redux-thunk只是⼀個運⽤了thunks樣式，
+        ⽤來協助調⽤這種轉換函數的中介軟體，程式碼⾏數非常少
+
+
+4. Redux 純函數
+    1. 什麼是純函數？
+        -> 純函數沒有任何可見的副作用
+        -> 純函數只用來產生新的值（return）
+        -> 純函數不會修改傳遞進來的參數
+            ->  function(array){
+                    return array.map() // array並沒有改變，而是產生了 新的數組
+                }
+    2. 什麼是非純函數？
+        -> 非純函數可能訪問數據庫或者網路，返回回來的參數可能會產生副作用，他們可能會操作到dom,也有可能改寫傳遞進來的參數
+        ->  function(x){
+                updateDatabase(x) // 此動作會產生副作用
+                return x * x
+            }
+    3. 為什麼要討論 純函數 和 非純函數？
+        -> 因為在使用redux時候，有些函數事先必須是純函數 （重點）
+        -> “純函數” 一般都會用於 reducers（還原劑）
+        -> 
+5. 
+6. 
