@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 //import './index.scss'
 import App from './App'
+import AppWilliam from './App_william'
 import * as serviceWorker from './serviceWorker'
 
 // 第一步 匯入createStore
@@ -20,7 +21,8 @@ import { rootReducers } from './reducers'
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // )
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   rootReducers,
   composeEnhancers(applyMiddleware(thunk))
@@ -30,7 +32,9 @@ ReactDOM.render(
   <React.StrictMode>
     {/* 最上層的react與redux綁定用的元件，屬性即為上面建立的store */}
     <Provider store={store}>
+      { console.log('store', store) }
       <App />
+      <AppWilliam />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -15,7 +15,7 @@ export const addValueAsync = (payload) => {
     return async function updateTotalToSever(dispatch, getState) {
         // getState方法可以得到目前redux裡的狀態是什麼
         // https://redux.js.org/api/store#getstate
-        console.log(getState())
+        console.log('getState', getState())
 
         const newTotal = { total: getState().counter + payload.value }
 
@@ -53,11 +53,11 @@ export const initValueAsync = (payload) => {
     return async function getTotalFromServer(dispatch) {
         // 注意header資料格式要設定，伺服器才知道是json格式
         const request = new Request('http://localhost:5555/counter/1', {
-        method: 'GET',
-        headers: new Headers({
-            Accept: 'application/json',
-            'Content-Type': 'appliaction/json',
-        }),
+            method: 'GET',
+            headers: new Headers({
+                Accept: 'application/json',
+                'Content-Type': 'appliaction/json',
+            }),
         })
 
         const response = await fetch(request)

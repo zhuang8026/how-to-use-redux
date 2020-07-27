@@ -1,4 +1,4 @@
-import React , {Component, useState}from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux'; // 高階元件
 
@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 const Counter = (props) => {
     // const [total, setTotal] = useState(0);
     console.log(props);
-    console.log(bindActionCreators)
+    console.log('bindActionCreators', bindActionCreators)
 
     const { total, dispatch } = props;
     return (
@@ -49,7 +49,9 @@ const Counter = (props) => {
 // mapStateToProps 是 gettter 得到資料
 const mapStateToProps =(store)=>{
     console.log('store', store) // store 來自 reducers（store） 的 state 
-    return { total: store.counter } 
+    return { 
+        total: store.counter, 
+    } 
 }
 
 const mapDispatchToProps = null;
