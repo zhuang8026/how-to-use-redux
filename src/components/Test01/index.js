@@ -14,16 +14,18 @@ let Test01 = props => {
                 // 直接 import 會無法使用
             }}
         >
-            Test01 - add number
+            {
+                props.children // Test01 - add number
+            } 
         </button>
     );
 };
 
 // store 來自index
 // mapStateToProps 是 gettter 得到資料
-const mapStateToProps = store => {
+const mapStateToProps = (store, ownProps) => {
     console.log('Test01-2', store); // store 來自 reducers（store） 的 state
-
+    console.log('ownProps', ownProps);
     return {
         total: store.counter
     };

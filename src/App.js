@@ -42,14 +42,14 @@ const Counter = props => {
             >
                 -1
             </button>
-            <Test01 />
+            <Test01>Test01 - add number</Test01>
         </>
     );
 };
 
 // store 來自index
 // mapStateToProps 是 gettter 得到資料
-const mapStateToProps = store => {
+const mapStateToProps = (store, ownProps) => {
     console.log('store', store); // store 來自 reducers（store） 的 state
 
     return {
