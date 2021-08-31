@@ -2,7 +2,7 @@
 const counterWilliam = (state = 0, action) => {
     // state  是 值
     // action 是 狀態
-    console.log('action', action);
+    // console.log('action', action);
     if(typeof state === 'undefined'){
         return 0;
     }
